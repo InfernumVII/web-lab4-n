@@ -33,7 +33,7 @@ const LoginHeader = () => {
   
           <div className="flex align-items-center gap-1">
               <span className="text-color-secondary text-sm">Вариант:</span>
-              <span className="font-medium">468074</span>
+              <span className="font-medium">3358</span>
           </div>
       </div>
     );

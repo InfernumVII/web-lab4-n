@@ -30,12 +30,10 @@ function App() {
     }
   }, [theme]);
 
-  if (!isAuthChecked) {
-      return (
+  {(!isAuthChecked) &&
           <div className="flex align-items-center justify-content-center h-screen surface-ground">
               <ProgressSpinner />
           </div>
-      );
   }
 
   return (

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchPoints } from '../store/slices/pointSlice';
 import Header from '../components/Header';
 import Graph from '../components/Graph';
@@ -7,11 +7,11 @@ import PointForm from '../components/PointForm';
 import ResultsTable from '../components/ResultsTable';
 
 const MainPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //TODO узнать
 
   useEffect(() => {
     dispatch(fetchPoints());
-  }, [dispatch]);
+  });
 
   return (
     <div className="min-h-screen surface-ground flex flex-column">

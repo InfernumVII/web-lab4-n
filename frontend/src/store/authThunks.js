@@ -12,6 +12,7 @@ export const login = (username, password) => async (dispatch) => {
     localStorage.setItem('user', JSON.stringify(user));
 
     dispatch(loginSuccess({ token, user }));
+    dispatch(setAuthChecked(true));
     return { success: true };
   } catch (error) {
     const message = error.response?.data?.message || 'Login failed';
@@ -34,13 +35,14 @@ export const register = (username, password) => async (dispatch) => {
   }
 };
 
-export const handleLogout = () => async (dispatch) => {
-  try {
-    await authService.logout();
-  } catch (error) {
-    console.error('Logout error:', error);
-  }
+export const handleLogout = () => (dispatch) => {
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('user');
   dispatch(logout());
+  
+  authService.logout().catch((error) => {
+    console.error('Logout error:', error);
+  });
 };
 
 export const initializeAuth = () => async (dispatch) => {

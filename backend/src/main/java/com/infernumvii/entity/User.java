@@ -1,10 +1,13 @@
 package com.infernumvii.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
+@Builder
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 

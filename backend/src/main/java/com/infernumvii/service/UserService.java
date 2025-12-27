@@ -103,15 +103,16 @@ public class UserService {
             throw new IllegalArgumentException("Password must be at least 6 characters long");
         }
 
-        User newUser = new User();
-        newUser.setUsername(loginRequest.getUsername());
-        newUser.setPassword(securityService.hashPassword(loginRequest.getPassword()));
-        newUser.setEmail(loginRequest.getUsername() + "@example.com");
-        newUser.setFirstName("User");
-        newUser.setLastName(loginRequest.getUsername());
-        newUser.setEnabled(true);
-        newUser.setCreatedAt(System.currentTimeMillis());
-        newUser.setUpdatedAt(System.currentTimeMillis());
+        User newUser = 
+            User.builder()
+            .username(loginRequest.getUsername())
+            .password(securityService.hashPassword(loginRequest.getPassword()))
+            .email(loginRequest.getUsername() + "@example.com")
+            .firstName("User")
+            .lastName(loginRequest.getUsername())
+            .createdAt(System.currentTimeMillis())
+            .updatedAt(System.currentTimeMillis())
+            .build();
 
         em.persist(newUser);
         em.flush();
